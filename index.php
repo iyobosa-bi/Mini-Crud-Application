@@ -1,6 +1,9 @@
 <?php
 
-//initialized page for codes
+require_once "Controllers/Interactions.php";
+
+$db =  new Interactions();
+$users = $db->getAllUsers();
 
 ?>
 
@@ -63,8 +66,9 @@
 
         <div class="row mt-2">
             <div class="col-md-12">
-                <div class="table-responsive">
-                    <table id="tableList" class="table table-table-striped table-bordered table-sm">
+                <?php if(count($users)>0) {?>
+                    <div class="table-responsive">
+                    <table id="tableList" class="table table-striped table-bordered table-sm">
                         <thead>
                             <tr class="text-center">
                                 <td>ID</td>
@@ -77,14 +81,13 @@
                         </thead>
                         <tbody>
                             <?php
-
-                            for ($i = 1; $i <= 50; $i++) { ?>
+                            foreach($users as $index=>$user) { ?>
                                 <tr class="text-center text-secondary">
-                                    <td><?php echo $i ?></td>
-                                    <td>User</td>
-                                    <td>Title 1</td>
-                                    <td>email.1@gmail.com</td>
-                                    <td>7896541254</td>
+                                    <td><?php echo $index+1 ?></td>
+                                    <td><?php echo $user['FirstName']?></td>
+                                    <td><?php echo $user['LastName']?></td>
+                                    <td><?php echo $user['Email']?></td>
+                                    <td><?php echo $user['Telephone']?></td>
                                     <td>
                                         <a href="#" title="view details" class="text-success"> <i class="fa fa-info-circle" aria-hidden="true"></i></a>
                                         <a href="#" title="edit details" class="text-primary"><i class="fas fa-edit "></i></a>
@@ -96,7 +99,10 @@
 
                         </tbody>
                     </table>
-                </div>
+                 </div>
+              <?php } else {?>
+                    <div class="alert alert-warning text-center">No Users found</div>
+            <?php  } ?>
             </div>
         </div>
     </div>
@@ -146,7 +152,30 @@
     <script>
         $(document).ready(function() {
 
-            $('#tableList').DataTable()
+            $('#tableList').DataTable();
+             
+            // showAllUsers();
+
+            // function showAllUsers(){
+
+            //   $.ajax({
+
+            //         type:"GET",
+            //         data:{"action":view},
+            //         dataType:"text",
+            //         url:"./Controllers/getRecords.php",
+            //         success:function(res){
+
+            //         },
+            //         error:function(err){
+            //             console.log(err)
+            //         }
+                
+
+            //   })
+
+
+            // }
 
 
         })
