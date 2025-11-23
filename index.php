@@ -77,7 +77,7 @@
                         <tbody>
                            <?php 
 
-                            for($i=1;$i<=20;$i++){?>
+                            for($i=1;$i<=50;$i++){?>
                                  <tr class="text-center text-secondary">
                                 <td><?php echo $i ?></td>
                                 <td>User</td>
@@ -90,7 +90,7 @@
                                       <a href="#" title="delete details" class="text-danger"> <i class="fa fa-trash" aria-hidden="true"></i></a>
                                 </td>
                             </tr>
-                         <?php   }   ?>
+                         <?php  }  ?>
                         
                             
                         </tbody>
