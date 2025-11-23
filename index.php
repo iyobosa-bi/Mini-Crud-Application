@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/2.3.5/css/dataTables.dataTables.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <link rel="stylesheet" href="assets/style.css">
     <title>Mini CRUD Table Application </title>
 
@@ -63,7 +64,7 @@
         <div class="row mt-2">
             <div class="col-md-12">
                 <div class="table-responsive">
-                    <table class="table table-table-striped table-bordered table-sm">
+                    <table id="tableList" class="table table-table-striped table-bordered table-sm">
                         <thead>
                             <tr class="text-center">
                                 <td>ID</td>
@@ -107,9 +108,18 @@
 
     <script src="jquery-3.7.1.min.js"></script>
     <script src="https://cdn.datatables.net/2.3.5/js/dataTables.min.js"></script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+    <script>
+        $(document).ready(function(){
+
+                $('#tableList').DataTable({})
+
+
+        })
+    </script>
+
 </body>
 
 </html>
