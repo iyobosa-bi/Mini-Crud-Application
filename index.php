@@ -56,7 +56,7 @@
                 <p class="mt-2 text-primary fw-bold">All Users in database</p>
             </div>
             <div class="col-md-6 text-md-end">
-                <button type="button" class="btn btn-primary"> <i class="fa fa-plus-circle" aria-hidden="true"></i> Add New Users</button>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"> <i class="fa fa-plus-circle" aria-hidden="true"></i> Add New Users</button>
                 <a href="#" class="btn btn-success "> <i class="fa fa-table" aria-hidden="true"></i> Export To Excel</a>
             </div>
         </div>
@@ -76,35 +76,67 @@
                             </tr>
                         </thead>
                         <tbody>
-                           <?php 
+                            <?php
 
-                            for($i=1;$i<=50;$i++){?>
-                                 <tr class="text-center text-secondary">
-                                <td><?php echo $i ?></td>
-                                <td>User</td>
-                                <td>Title 1</td>
-                                <td>email.1@gmail.com</td>
-                                <td>7896541254</td>
-                                <td>
-                                    <a href="#" title="view details" class="text-success"> <i class="fa fa-info-circle" aria-hidden="true"></i></a>
-                                     <a href="#" title="edit details" class="text-primary"><i class="fas fa-edit "></i></a>
-                                      <a href="#" title="delete details" class="text-danger"> <i class="fa fa-trash" aria-hidden="true"></i></a>
-                                </td>
-                            </tr>
-                         <?php  }  ?>
-                        
-                            
+                            for ($i = 1; $i <= 50; $i++) { ?>
+                                <tr class="text-center text-secondary">
+                                    <td><?php echo $i ?></td>
+                                    <td>User</td>
+                                    <td>Title 1</td>
+                                    <td>email.1@gmail.com</td>
+                                    <td>7896541254</td>
+                                    <td>
+                                        <a href="#" title="view details" class="text-success"> <i class="fa fa-info-circle" aria-hidden="true"></i></a>
+                                        <a href="#" title="edit details" class="text-primary"><i class="fas fa-edit "></i></a>
+                                        <a href="#" title="delete details" class="text-danger"> <i class="fa fa-trash" aria-hidden="true"></i></a>
+                                    </td>
+                                </tr>
+                            <?php  }  ?>
+
+
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-        
-
-
-
     </div>
 
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title fw-bold" id="exampleModalLabel">Add New User</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body mx-4">
+                    <form action="" method="post" >
+                            <div class="form-group mb-2">
+                                <!-- <label for="my-input">Text</label> -->
+                                <input id="fname" class="form-control" type="text" name="fname" placeholder="First Name goes here" required>
+                            </div>
+                            <div class="form-group mb-2">
+                                <!-- <label for="my-input">Text</label> -->
+                                <input id="lname" class="form-control" type="text" name="lname" placeholder="Last Name goes here" required>
+                            </div>
+                             <div class="form-group mb-2">
+                                <!-- <label for="my-input">Text</label> -->
+                                <input id="email" class="form-control" type="email" name="email" placeholder="Email" required>
+                            </div>
+                            <div class="form-group mb-2">
+                                <!-- <label for="my-input">Text</label> -->
+                                <input id="phone" class="form-control" type="tel" name="phone" placeholder="Telephone" required>
+                            </div>
+
+                            <button type="submit" name="btnSubmit" class="col-12 btn btn-danger" >Add User</button>
+                    </form>  
+                </div>
+                <!-- <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div> -->
+        </div>
+    </div>
 
     <script src="jquery-3.7.1.min.js"></script>
     <script src="https://cdn.datatables.net/2.3.5/js/dataTables.min.js"></script>
@@ -112,9 +144,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
     <script>
-        $(document).ready(function(){
+        $(document).ready(function() {
 
-                $('#tableList').DataTable({})
+            $('#tableList').DataTable()
 
 
         })
