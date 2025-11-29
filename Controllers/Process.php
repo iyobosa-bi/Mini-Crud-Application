@@ -10,7 +10,7 @@ use Controllers\Interactions;
 $interactions =  new Interactions();
 
 
-if (isset($_POST)) {
+if (isset($_POST) && !empty($_POST)) {
     // print_r($_POST);
     // exit();
 
@@ -23,7 +23,6 @@ if (isset($_POST)) {
     }
 
     //sanitize for email check
-
     if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
         echo json_encode(["ResponseCode" => "05", "ResponseMessage" => "Invalid Email Address"]);
         exit();
@@ -40,8 +39,6 @@ if (isset($_POST)) {
     }
     //insert records
 
-    // echo json_encode(["ResponseCode"=>"01","ResponseMessage"=>"I am here"]);
-
     $insertResponse = $interactions->insertRecord($_POST['fname'], $_POST['lname'], $_POST['email'], $_POST['phone']);
     if ($insertResponse) {
         echo json_encode(["ResponseCode" => "01", "ResponseMessage" => "User Succesfully Inserted"]);
@@ -50,4 +47,15 @@ if (isset($_POST)) {
         echo json_encode(["ResponseCode" => "05", "ResponseMessage" => "Error in Processing Record"]);
         exit();
     }
+}
+
+if(isset($_GET['action']) && $_GET['action']== "retrieve"){
+
+        // echo "i am here";
+        $newRecords =  $interactions->getAllUsers();
+        // print_r($newRecords);
+
+        echo json_encode($newRecords);
+
+
 }

@@ -140,7 +140,7 @@ $users = $db->getAllUsers();
                             <input id="phone" class="form-control" type="tel" name="phone" placeholder="Telephone" pattern="[0-9]*"
                                 inputmode="numeric"
                                 maxlength="11"
-                                required >
+                                required>
                         </div>
 
                         <button type="button" name="btnSubmit" class="col-12 btn btn-danger" id="btnSubmit">Add User</button>
@@ -160,55 +160,98 @@ $users = $db->getAllUsers();
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
         <script>
             $(document).ready(function() {
-
-                  $('#phone').on('input', function() {
+                $('#phone').on('input', function() {
                     this.value = this.value.replace(/\D/g, "");
-                  });
+                });
+
+                function showAllUsers() {
+                    $.ajax({
+
+                        type: 'GET',
+                        url: 'Controllers/Process.php',
+                        data: {
+                            action: 'retrieve'
+                        },
+                        success: function(res) {
+
+                            const mainData =JSON.parse(res);
+                            // console.log( typeof(res));
+                            if (res.length > 0) {
+                                if ($.fn.DataTable.isDataTable('#tableList')) {
+                                    $('#tableList').DataTable().destroy();
+                                }
+                                var tbodyEntity = document.getElementById('tableList').getElementsByTagName('tbody')[0];
+                                tbodyEntity.innerHTML = '';
+                                // console.log(tbodyEntity);
+
+                                let mainIndex = 0;
+
+                                mainData.forEach(function(item) {
+
+                                    console.log(item) //create  row
+                                    tbodyEntity.innerHTML += `<tr><td>${mainIndex + 1}</td><td>${item.FirstName}</td><td>${item.LastName}</td><td>${item.Email}</td><td>${item.Telephone}</td><td></td></tr>`
+
+                                    mainIndex++
+                                })
+
+                                $('#tableList').DataTable({
+                                    order: [0, 'desc']
+                                });
+                                    // console.log(tbodyEntity);
+
+                            }
+
+                            
+                        }
+                    });
+
+                }
 
 
                 function insertFormData() {
                     // console.log($('#mainFormElement').serialize());
-                    
+
                     $.ajax({
                         url: 'Controllers/Process.php',
                         type: 'POST',
-                        data:$('#mainFormElement').serialize(),
+                        data: $('#mainFormElement').serialize(),
                         success: function(res) {
                             console.log(res);
                             let parsedResponse;
-                            try{
-                                parsedResponse = JSON.parse(res);
-                                Swal.fire({
-                                    icon: parsedResponse.ResponseCode  == "01" ? 'success' : 'error',
-                                    title: parsedResponse.ResponseMessage,
-                                    showConfirmButton: true
-                                });
-                                // $('#exampleModal').modal('hide');
-                                $('#mainFormElement')[0].reset();
-                                
-                            } catch (e) {
-                                Swal.fire({
-                                    icon: 'error',
-                                    title: 'Invalid server response',
-                                    text: 'Could not parse server response.',
-                                    showConfirmButton: true
-                                });
-                                //  $('#exampleModal').modal('hide');
-                                $('#mainFormElement')[0].reset();
+
+                            parsedResponse = JSON.parse(res);
+                            Swal.fire({
+                                icon: parsedResponse.ResponseCode == "01" ? 'success' : 'error',
+                                title: parsedResponse.ResponseMessage,
+                                showConfirmButton: true
+                            });
+                            // $('#exampleModal').modal('hide');
+                            showAllUsers();
+                            $('#mainFormElement')[0].reset();
+
+                            // } catch (e) {
+                            //     Swal.fire({
+                            //         icon: 'error',
+                            //         title: 'Invalid server response',
+                            //         text: 'Could not parse server response.',
+                            //         showConfirmButton: true
+                            //     });
+                            //     //  $('#exampleModal').modal('hide');
+                            //     $('#mainFormElement')[0].reset();
 
 
-                            }
+                            // }
                         }
                     })
                 }
 
-                
+
 
                 $('#tableList').DataTable({
                     order: [0, 'desc']
                 });
 
-               
+
 
                 $('#btnSubmit').off('click').on('click', function(e) {
                     e.preventDefault();
@@ -216,7 +259,6 @@ $users = $db->getAllUsers();
                 })
 
             })
-
         </script>
 
 </body>
