@@ -189,7 +189,7 @@ $users = $db->getAllUsers();
                                 mainData.forEach(function(item) {
 
                                     console.log(item) //create  row
-                                    tbodyEntity.innerHTML += `<tr><td>${mainIndex + 1}</td><td>${item.FirstName}</td><td>${item.LastName}</td><td>${item.Email}</td><td>${item.Telephone}</td><td></td></tr>`
+                                    tbodyEntity.innerHTML += `<tr class="text-center text-secondary"><td>${mainIndex + 1}</td><td>${item.FirstName}</td><td>${item.LastName}</td><td>${item.Email}</td><td>${item.Telephone}</td><td></td></tr>`
 
                                     mainIndex++
                                 })
