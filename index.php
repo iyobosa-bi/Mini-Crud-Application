@@ -1,6 +1,12 @@
 <?php
 
-require_once "Controllers/Interactions.php";
+// define('ROOT',__DIR__);
+// require_once ROOT.'/Controllers/Interactions.php';
+
+require_once __DIR__ . '/autoload.php';
+
+use Controllers\Interactions;
+
 
 $db =  new Interactions();
 $users = $db->getAllUsers();
@@ -66,43 +72,43 @@ $users = $db->getAllUsers();
 
         <div class="row mt-2">
             <div class="col-md-12">
-                <?php if(count($users)>0) {?>
+                <?php if (count($users) > 0) { ?>
                     <div class="table-responsive">
-                    <table id="tableList" class="table table-striped table-bordered table-sm">
-                        <thead>
-                            <tr class="text-center">
-                                <td>ID</td>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Email</th>
-                                <th>Phone</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            foreach($users as $index=>$user) { ?>
-                                <tr class="text-center text-secondary">
-                                    <td><?php echo $index+1 ?></td>
-                                    <td><?php echo $user['FirstName']?></td>
-                                    <td><?php echo $user['LastName']?></td>
-                                    <td><?php echo $user['Email']?></td>
-                                    <td><?php echo $user['Telephone']?></td>
-                                    <td>
-                                        <a href="#" title="view details" class="text-success"> <i class="fa fa-info-circle" aria-hidden="true"></i></a>
-                                        <a href="#" title="edit details" class="text-primary"><i class="fas fa-edit "></i></a>
-                                        <a href="#" title="delete details" class="text-danger"> <i class="fa fa-trash" aria-hidden="true"></i></a>
-                                    </td>
+                        <table id="tableList" class="table table-striped table-bordered table-sm">
+                            <thead>
+                                <tr class="text-center">
+                                    <td>ID</td>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Actions</th>
                                 </tr>
-                            <?php  }  ?>
+                            </thead>
+                            <tbody>
+                                <?php
+                                foreach ($users as $index => $user) { ?>
+                                    <tr class="text-center text-secondary">
+                                        <td><?php echo $index + 1 ?></td>
+                                        <td><?php echo $user['FirstName'] ?></td>
+                                        <td><?php echo $user['LastName'] ?></td>
+                                        <td><?php echo $user['Email'] ?></td>
+                                        <td><?php echo $user['Telephone'] ?></td>
+                                        <td>
+                                            <a href="#" title="view details" class="text-success"> <i class="fa fa-info-circle" aria-hidden="true"></i></a>
+                                            <a href="#" title="edit details" class="text-primary"><i class="fas fa-edit "></i></a>
+                                            <a href="#" title="delete details" class="text-danger"> <i class="fa fa-trash" aria-hidden="true"></i></a>
+                                        </td>
+                                    </tr>
+                                <?php  }  ?>
 
 
-                        </tbody>
-                    </table>
-                 </div>
-              <?php } else {?>
+                            </tbody>
+                        </table>
+                    </div>
+                <?php } else { ?>
                     <div class="alert alert-warning text-center">No Users found</div>
-            <?php  } ?>
+                <?php  } ?>
             </div>
         </div>
     </div>
@@ -116,70 +122,102 @@ $users = $db->getAllUsers();
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body mx-4">
-                    <form action="" method="post" >
-                            <div class="form-group mb-2">
-                                <!-- <label for="my-input">Text</label> -->
-                                <input id="fname" class="form-control" type="text" name="fname" placeholder="First Name goes here" required>
-                            </div>
-                            <div class="form-group mb-2">
-                                <!-- <label for="my-input">Text</label> -->
-                                <input id="lname" class="form-control" type="text" name="lname" placeholder="Last Name goes here" required>
-                            </div>
-                             <div class="form-group mb-2">
-                                <!-- <label for="my-input">Text</label> -->
-                                <input id="email" class="form-control" type="email" name="email" placeholder="Email" required>
-                            </div>
-                            <div class="form-group mb-2">
-                                <!-- <label for="my-input">Text</label> -->
-                                <input id="phone" class="form-control" type="tel" name="phone" placeholder="Telephone" required>
-                            </div>
+                    <form action="" method="post" id="mainFormElement">
+                        <div class="form-group mb-2">
+                            <!-- <label for="my-input">Text</label> -->
+                            <input id="fname" class="form-control" type="text" name="fname" placeholder="First Name goes here" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <!-- <label for="my-input">Text</label> -->
+                            <input id="lname" class="form-control" type="text" name="lname" placeholder="Last Name goes here" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <!-- <label for="my-input">Text</label> -->
+                            <input id="email" class="form-control" type="email" name="email" placeholder="Email" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <!-- <label for="my-input">Text</label> -->
+                            <input id="phone" class="form-control" type="tel" name="phone" placeholder="Telephone" pattern="[0-9]*"
+                                inputmode="numeric"
+                                maxlength="11"
+                                required >
+                        </div>
 
-                            <button type="submit" name="btnSubmit" class="col-12 btn btn-danger" >Add User</button>
-                    </form>  
+                        <button type="button" name="btnSubmit" class="col-12 btn btn-danger" id="btnSubmit">Add User</button>
+                    </form>
                 </div>
                 <!-- <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary">Save changes</button>
                 </div> -->
+            </div>
         </div>
-    </div>
 
-    <script src="jquery-3.7.1.min.js"></script>
-    <script src="https://cdn.datatables.net/2.3.5/js/dataTables.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
-    <script>
-        $(document).ready(function() {
+        <script src="jquery-3.7.1.min.js"></script>
+        <script src="https://cdn.datatables.net/2.3.5/js/dataTables.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+        <script>
+            $(document).ready(function() {
 
-            $('#tableList').DataTable();
-             
-            // showAllUsers();
+                  $('#phone').on('input', function() {
+                    this.value = this.value.replace(/\D/g, "");
+                  });
 
-            // function showAllUsers(){
 
-            //   $.ajax({
+                function insertFormData() {
+                    // console.log($('#mainFormElement').serialize());
+                    
+                    $.ajax({
+                        url: 'Controllers/Process.php',
+                        type: 'POST',
+                        data:$('#mainFormElement').serialize(),
+                        success: function(res) {
+                            console.log(res);
+                            let parsedResponse;
+                            try{
+                                parsedResponse = JSON.parse(res);
+                                Swal.fire({
+                                    icon: parsedResponse.ResponseCode  == "01" ? 'success' : 'error',
+                                    title: parsedResponse.ResponseMessage,
+                                    showConfirmButton: true
+                                });
+                                // $('#exampleModal').modal('hide');
+                                $('#mainFormElement')[0].reset();
+                                
+                            } catch (e) {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Invalid server response',
+                                    text: 'Could not parse server response.',
+                                    showConfirmButton: true
+                                });
+                                //  $('#exampleModal').modal('hide');
+                                $('#mainFormElement')[0].reset();
 
-            //         type:"GET",
-            //         data:{"action":view},
-            //         dataType:"text",
-            //         url:"./Controllers/getRecords.php",
-            //         success:function(res){
 
-            //         },
-            //         error:function(err){
-            //             console.log(err)
-            //         }
+                            }
+                        }
+                    })
+                }
+
                 
 
-            //   })
+                $('#tableList').DataTable({
+                    order: [0, 'desc']
+                });
 
+               
 
-            // }
+                $('#btnSubmit').off('click').on('click', function(e) {
+                    e.preventDefault();
+                    insertFormData();
+                })
 
+            })
 
-        })
-    </script>
+        </script>
 
 </body>
 

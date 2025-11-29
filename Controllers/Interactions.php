@@ -1,7 +1,14 @@
 <?php
 
+// require_once __DIR__.'/../Connection/Db.php';
+namespace Controllers;
 
-require_once ("./Connection/Db.php");
+require_once __DIR__ . '/../autoload.php';
+
+use Connection\Db;
+
+use PDO;
+
 
 class Interactions extends Db{
 
@@ -36,12 +43,25 @@ class Interactions extends Db{
             return $recs;
         }
 
+        public function getEmails(){
+
+            $sql = "SELECT Email FROM UsersTable";
+            $stmt = $this->dbconn->prepare($sql);
+            $stmt->execute();
+            $recs = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $recs;
+
+        }
+
+
+      
+
 
 }
 
 
 // $db =  new Interactions();
-// $user = $db->getAllUsers();
+// $user = $db->getEmails();
 // print_r($user);
 
 
