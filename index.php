@@ -8,7 +8,7 @@ require_once __DIR__ . '/autoload.php';
 use Controllers\Interactions;
 
 
-$db =  new Interactions();
+$db = new Interactions();
 $users = $db->getAllUsers();
 
 ?>
@@ -35,7 +35,8 @@ $users = $db->getAllUsers();
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container p-3">
             <a class="navbar-brand ms-5" href=""><i class="fas fa-server"></i> Crud Application</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse ms-5" id="navbarNav">
@@ -56,7 +57,8 @@ $users = $db->getAllUsers();
     <div class="container mt-5">
         <div class="row mb-3">
             <div class="col-lg-12">
-                <h4 class="text-center text-danger fw-medium">Crud Application with PHP OOP MVC,Ajax,SSMS/SQL DataBase,SweetAlert</h4>
+                <h4 class="text-center text-danger fw-medium">Crud Application with PHP OOP MVC,Ajax,SSMS/SQL
+                    DataBase,SweetAlert</h4>
             </div>
         </div>
 
@@ -65,7 +67,8 @@ $users = $db->getAllUsers();
                 <p class="mt-2 text-primary fw-bold">All Users in database</p>
             </div>
             <div class="col-md-6 text-md-end">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"> <i class="fa fa-plus-circle" aria-hidden="true"></i> Add New Users</button>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"> <i
+                        class="fa fa-plus-circle" aria-hidden="true"></i> Add New Users</button>
                 <a href="#" class="btn btn-success "> <i class="fa fa-table" aria-hidden="true"></i> Export To Excel</a>
             </div>
         </div>
@@ -95,12 +98,15 @@ $users = $db->getAllUsers();
                                         <td><?php echo $user['Email'] ?></td>
                                         <td><?php echo $user['Telephone'] ?></td>
                                         <td>
-                                            <a href="#" title="view details" class="text-success"> <i class="fa fa-info-circle" aria-hidden="true"></i></a>
-                                            <a href="#" title="edit details" class="text-primary"><i class="fas fa-edit "></i></a>
-                                            <a href="#" title="delete details" class="text-danger"> <i class="fa fa-trash" aria-hidden="true"></i></a>
+                                            <a href="#" title="view details" class="text-success"> <i class="fa fa-info-circle"
+                                                    aria-hidden="true"></i></a>
+                                            <a href="#" title="edit details" class="text-primary"><i
+                                                    class="fas fa-edit "></i></a>
+                                            <a href="#" title="delete details" class="text-danger"> <i class="fa fa-trash"
+                                                    aria-hidden="true"></i></a>
                                         </td>
                                     </tr>
-                                <?php  }  ?>
+                                <?php } ?>
 
 
                             </tbody>
@@ -108,7 +114,7 @@ $users = $db->getAllUsers();
                     </div>
                 <?php } else { ?>
                     <div class="alert alert-warning text-center">No Users found</div>
-                <?php  } ?>
+                <?php } ?>
             </div>
         </div>
     </div>
@@ -125,25 +131,27 @@ $users = $db->getAllUsers();
                     <form action="" method="post" id="mainFormElement">
                         <div class="form-group mb-2">
                             <!-- <label for="my-input">Text</label> -->
-                            <input id="fname" class="form-control" type="text" name="fname" placeholder="First Name goes here" required>
+                            <input id="fname" class="form-control" type="text" name="fname"
+                                placeholder="First Name goes here" required>
                         </div>
                         <div class="form-group mb-2">
                             <!-- <label for="my-input">Text</label> -->
-                            <input id="lname" class="form-control" type="text" name="lname" placeholder="Last Name goes here" required>
+                            <input id="lname" class="form-control" type="text" name="lname"
+                                placeholder="Last Name goes here" required>
                         </div>
                         <div class="form-group mb-2">
                             <!-- <label for="my-input">Text</label> -->
-                            <input id="email" class="form-control" type="email" name="email" placeholder="Email" required>
-                        </div>
-                        <div class="form-group mb-2">
-                            <!-- <label for="my-input">Text</label> -->
-                            <input id="phone" class="form-control" type="tel" name="phone" placeholder="Telephone" pattern="[0-9]*"
-                                inputmode="numeric"
-                                maxlength="11"
+                            <input id="email" class="form-control" type="email" name="email" placeholder="Email"
                                 required>
                         </div>
+                        <div class="form-group mb-2">
+                            <!-- <label for="my-input">Text</label> -->
+                            <input id="phone" class="form-control" type="tel" name="phone" placeholder="Telephone"
+                                pattern="[0-9]*" inputmode="numeric" maxlength="11" required>
+                        </div>
 
-                        <button type="button" name="btnSubmit" class="col-12 btn btn-danger" id="btnSubmit">Add User</button>
+                        <button type="button" name="btnSubmit" class="col-12 btn btn-danger" id="btnSubmit">Add
+                            User</button>
                     </form>
                 </div>
                 <!-- <div class="modal-footer">
@@ -159,8 +167,8 @@ $users = $db->getAllUsers();
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
         <script>
-            $(document).ready(function() {
-                $('#phone').on('input', function() {
+            $(document).ready(function () {
+                $('#phone').on('input', function () {
                     this.value = this.value.replace(/\D/g, "");
                 });
 
@@ -172,10 +180,10 @@ $users = $db->getAllUsers();
                         data: {
                             action: 'retrieve'
                         },
-                        success: function(res) {
+                        success: function (res) {
 
-                            const mainData =JSON.parse(res);
-                            // console.log( typeof(res));
+                            const mainData = JSON.parse(res);
+                            console.log(typeof (mainData));
                             if (res.length > 0) {
                                 if ($.fn.DataTable.isDataTable('#tableList')) {
                                     $('#tableList').DataTable().destroy();
@@ -186,10 +194,32 @@ $users = $db->getAllUsers();
 
                                 let mainIndex = 0;
 
-                                mainData.forEach(function(item) {
+                                mainData.forEach(function (item) {
 
-                                    console.log(item) //create  row
-                                    tbodyEntity.innerHTML += `<tr class="text-center text-secondary"><td>${mainIndex + 1}</td><td>${item.FirstName}</td><td>${item.LastName}</td><td>${item.Email}</td><td>${item.Telephone}</td><td></td></tr>`
+                                    // // console.log(item) //create  row
+                                    // tbodyEntity.innerHTML += `<tr class="text-center text-secondary"><td>${mainIndex + 1}</td><td>${item.FirstName}</td><td>${item.LastName}</td><td>${item.Email}</td><td>${item.Telephone}</td><td>
+                                    //  <a href="#" title="view details" class="text-success"> <i class="fa fa-info-circle" aria-hidden="true"></i></a>
+                                    //         <a href="#" title="edit details" class="text-primary"><i class="fas fa-edit "></i></a>
+                                    //         <a href="#" title="delete details" class="text-danger"> <i class="fa fa-trash" aria-hidden="true"></i></a>
+                                    // </td></tr>`
+                                    let newRow = document.createElement('tr');
+                                    newRow.className = 'text-center text-secondary';
+
+                                    newRow.innerHTML = `
+                                    <td>${mainIndex + 1}</td>
+                                    <td>${item.FirstName}</td>
+                                    <td>${item.LastName}</td>
+                                    <td>${item.Email}</td>
+                                    <td>${item.Telephone}</td>
+                                    <td>
+                                        <a href="#" title="view details" class="text-success"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
+                                        <a href="#" title="edit details" class="text-primary"><i class="fas fa-edit"></i></a>
+                                        <a href="#" title="delete details" class="text-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                    </td>
+                                `;
+
+                                    tbodyEntity.appendChild(newRow);
+
 
                                     mainIndex++
                                 })
@@ -197,17 +227,15 @@ $users = $db->getAllUsers();
                                 $('#tableList').DataTable({
                                     order: [0, 'desc']
                                 });
-                                    // console.log(tbodyEntity);
+                                // console.log(tbodyEntity);
 
                             }
 
-                            
+
                         }
                     });
 
                 }
-
-
                 function insertFormData() {
                     // console.log($('#mainFormElement').serialize());
 
@@ -215,7 +243,7 @@ $users = $db->getAllUsers();
                         url: 'Controllers/Process.php',
                         type: 'POST',
                         data: $('#mainFormElement').serialize(),
-                        success: function(res) {
+                        success: function (res) {
                             console.log(res);
                             let parsedResponse;
 
@@ -225,8 +253,9 @@ $users = $db->getAllUsers();
                                 title: parsedResponse.ResponseMessage,
                                 showConfirmButton: true
                             });
-                            // $('#exampleModal').modal('hide');
+
                             showAllUsers();
+                            $('#exampleModal').modal('hide');
                             $('#mainFormElement')[0].reset();
 
                             // } catch (e) {
@@ -245,15 +274,14 @@ $users = $db->getAllUsers();
                     })
                 }
 
-
-
                 $('#tableList').DataTable({
                     order: [0, 'desc']
+                    
                 });
 
 
 
-                $('#btnSubmit').off('click').on('click', function(e) {
+                $('#btnSubmit').off('click').on('click', function (e) {
                     e.preventDefault();
                     insertFormData();
                 })
